@@ -1,0 +1,149 @@
+<%- include("header") -%>
+    <div class="container bootstrap snippets bootdey">
+    <div class="panel-body inf-content">
+        <div class="row">
+          <div class="col-md-1">
+
+            </div>
+            <div class="col-md-2">
+
+              <form class="profilef" action="/changeProfile" method="post">
+                <img alt="" style="width:600px;" title="" class="img-circle img-thumbnail isTooltip pic" src="/logos/logo<%=clickedPlayer.logoNum%>.png" data-original-title="Usuario">
+                <p class="name">  </p>
+                <button class="btn btn-warning namepro" type="submit" name="playah" value="<%=clickedPlayer.name%>"> <%=clickedPlayer.name%> </button>
+              </form>
+
+            </div>
+            <div class="col-md-1">
+
+              </div>
+            <div class="col-md-5" >
+                <h1>Stats</h1><br>
+                <div class="table-responsive">
+                <table class="table table-user-information">
+                    <tbody>
+                      <!-- games played -->
+                        <tr>
+                            <td>
+                                <strong>
+                                    <span class="glyphicon glyphicon-cloud text-primary"></span>
+                                    Games played
+                                </strong>
+                            </td>
+                            <td class="text-primary">
+                                <%=clickedPlayer.gamesPlayed%>
+                            </td>
+
+
+                        </tr>
+                        <!-- solo wins -->
+                        <tr>
+                            <td>
+                                <strong>
+                                    <span class="glyphicon glyphicon-bookmark text-primary"></span>
+                                    Solo Wins
+                                </strong>
+                            </td>
+                            <td class="text-primary">
+                                <%=clickedPlayer.soloWins%>
+                            </td>
+
+                        </tr>
+                        <!-- Alliance Wins -->
+                        <tr>
+                            <td>
+                                <strong>
+                                    <span class="glyphicon glyphicon-eye-open text-primary"></span>
+                                    Alliance Wins
+                                </strong>
+                            </td>
+                            <td class="text-primary">
+                                <%=clickedPlayer.allianceWins%>
+                            </td>
+
+                        </tr>
+                        <tr>
+                            <td>
+                                <strong>
+                                    <span class="glyphicon glyphicon-eye-open text-primary"></span>
+                                    Factions
+                                </strong>
+                            </td>
+                            <td class="text-primary">
+                              <%clickedPlayer.faction.forEach(function(foundfaction){%>
+                                <img class="logos" src="/<%=foundfaction%>.svg" >
+                            <%  })%>
+
+                            </td>
+                        </tr>
+
+                    </tbody>
+                </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+
+    <!-- game stats -->
+    <div class="container bootstrap snippets bootdey">
+    <div class="panel-body inf-content">
+        <div class="row">
+          <div class="col-md-3">
+
+
+            </div>
+          <div class="col-md-6">
+  <div class="table-responsive ">
+
+      <table class="table table-user-information">
+        <thead>
+          <tr>
+            <th>Faction</th>
+            <th>Games Played</th>
+            <th>Solo Wins</th>
+            <th>Alliance Wins</th>
+            <th>Win Rate</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% var factionsArr=[]; %>
+
+<% clickedPlayer.games.forEach(function(foundGame){ %>
+
+<%  factionsArr.push(foundGame.faction)%>
+<% }) %>
+
+<%  var dedupedFactions = factionsArr.filter(function (faction, index) { %>
+  	<% return factionsArr.indexOf(faction) === index;}); %>
+
+<% dedupedFactions.forEach(function(faction){ %>
+  <% var soloWi=0; %>
+  <% var allWi=0; %>
+  <% var gp=0; %>
+  <% clickedPlayer.games.forEach(function(foundGame){ %>
+<%if (foundGame.faction===faction){soloWi=soloWi+foundGame.soloWin; allWi=allWi+foundGame.allianceWin; gp++}%>
+
+    <% }) %>
+          <tr>
+
+              <td class="rank"> <%= faction%> </td>
+
+              <td class="team"><%=gp%></td>
+              <td class="points"><%=soloWi%></td>
+              <td><%= allWi%></td>
+              <td><%=((soloWi+allWi)/gp)*100%>%</td>
+            </tr>
+<% }) %>
+
+        </tbody>
+      </table>
+    </div>
+</div>
+<div class="col-md-3">
+
+
+  </div>
+</div>
+</div>
+</div>

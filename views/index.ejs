@@ -1,0 +1,30 @@
+<%- include("header") -%>
+    <div class="container">
+			<header>
+        <h1>Dune Ranking</h1>
+
+			</header>
+			<div class="wrapper">
+				<table style="border-radius:3%;">
+					<thead>
+						<tr>
+							<th>Rank</th>
+							<th>Player</th>
+							<th>Points</th>
+						</tr>
+					</thead>
+					<tbody>
+            <% foundPlayers.forEach(function(foundPlayer){ rank++%>
+						<tr class="team" onclick="location.href='/playerdash/<%= foundPlayer._id %>'">
+
+                <td class="rank"> <%=rank%> </td>
+                <td><%= foundPlayer.name %></td>
+                <td class="points"><%= foundPlayer.score %></td>
+
+              </tr>
+<% }) %>
+					</tbody>
+				</table>
+			</div>
+		</div>
+<%- include("footer") -%>

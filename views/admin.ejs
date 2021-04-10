@@ -1,0 +1,78 @@
+<%- include("header") -%>
+
+  <div class="container">
+    <header>
+      <h1>Dune Ranking</h1>
+    </header>
+    <div class="wrapper">
+      <table>
+        <thead>
+          <tr>
+            <th>Rank</th>
+            <th>Player</th>
+            <th>Points</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% foundPlayers.forEach(function(foundPlayer){ rank++%>
+          <tr  class="team" onclick="location.href='/playerdash/<%= foundPlayer._id %>'">
+
+            <td class="rank"> <%=rank%> </td>
+            <td ><%= foundPlayer.name %></td>
+            <td class="points"><%= foundPlayer.score %></td>
+
+          </tr>
+          <% }) %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <form class="" action="/admin" method="post">
+<!-- player selector -->
+    <label for="players">Choose a Player:</label>
+    <select id="players" name="players">
+      <% foundPlayers.forEach(function(foundPlayer){ %>
+      <option value="<%= foundPlayer.name %>"><%= foundPlayer.name %></option>
+      <% }) %>
+    </select>
+<!-- other details -->
+
+    <label for="factions">Choose a Faction:</label>
+    <select id="factions" name="faction">
+
+      <option value="Harkonnen">Harkonnen</option>
+      <option value="Atreides">Atreides</option>
+      <option value="Bene-Gesserit">Bene Gesserit</option>
+      <option value="Emperor">Emperor</option>
+      <option value="Fremen">Fremen</option>
+      <option value="Spacing-Guild">Spacing Guild</option>
+      <option value="Tleilaxu">Tleilaxu</option>
+      <option value="Ixian">Ixian</option>
+    </select>
+
+    <input type="checkbox" id="soloWinCounter" name="soloW" value="1">
+    <label for="soloWinCounter">Solo Win</label>
+
+    <input type="checkbox" id="allianceWinCounter" name="allW" value="1">
+    <label for="allianceWinCounter">Allaince Win</label>
+
+    <button type="submit" name="lorem">Update Scoreboard</button>
+  </form>
+  <!-- add new player -->
+  <form class="" action="/newplayer" method="post">
+    <input type="text" name="newPlayer" placeholder="player name">
+    <button type="submit" name="lorem">Add New Player</button>
+  </form>
+<!-- delete player -->
+  <form class="" action="/deleteplayer" method="post">
+
+    <label for="delplayers">Choose a Player:</label>
+    <select id="delplayers" name="playerstodel">
+      <% foundPlayers.forEach(function(foundPlayer){ %>
+      <option value="<%= foundPlayer.name %>"><%= foundPlayer.name %></option>
+      <% }) %>
+    </select>
+
+    <button type="submit">Delete Player</button>
+  </form>
+<%- include("footer") -%>
