@@ -89,11 +89,11 @@
     <div class="container bootstrap snippets bootdey">
     <div class="panel-body inf-content">
         <div class="row">
-          <div class="col-md-3">
+          <div class="col-md-2">
 
 
             </div>
-          <div class="col-md-6">
+          <div class="col-md-8">
   <div class="table-responsive ">
 
       <table class="table table-user-information">
@@ -132,7 +132,7 @@
               <td class="team"><%=gp%></td>
               <td class="points"><%=soloWi%></td>
               <td><%= allWi%></td>
-              <td><%=((soloWi+allWi)/gp)*100%>%</td>
+              <td><%=Math.round(((soloWi+allWi)/gp)*100)%>%</td>
             </tr>
 <% }) %>
 
@@ -140,7 +140,7 @@
       </table>
     </div>
 </div>
-<div class="col-md-3">
+<div class="col-md-2">
 
 
   </div>
