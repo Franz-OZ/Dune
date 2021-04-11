@@ -53,6 +53,11 @@ app.get("/playerdash/:paramName",(req,res)=>{
 
 })
 
+app.get('/about', (req, res) => {
+
+    res.render('about.ejs')
+  })
+
 app.post("/admin",(req,res)=>{
   newPlayern=req.body.players
   fact=req.body.faction
