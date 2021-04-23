@@ -106,13 +106,54 @@ footer{
   text-align:center;
 }
 .about{
-  padding-left: 20%;
-  padding-right: 20%;
-  padding-bottom: 10%;
+  padding-left: 3%;
+  padding-right: 3%;
+  margin-left: 20%;
+  margin-right: 20%;
+  padding-bottom: 1%;
+  margin-bottom: 10%;
   padding-top: 5%;
   color: white;
+  background-color: rgba(0,0,0,0.5) !important;
+  border-radius: 2%;
 }
 .note{
   font-size: 80%;
   color: white;
+}
+
+.card{
+height: 370px;
+margin-top: auto;
+margin-bottom: auto;
+width: 400px;
+background-color: rgba(0,0,0,0.5) !important;
+}
+
+.card-header h3{
+color: white;
+}
+
+.input-group-prepend span{
+width: 50px;
+background-color: #FFC312;
+color: black;
+border:0 !important;
+}
+
+input:focus{
+outline: 0 0 0 0  !important;
+box-shadow: 0 0 0 0 !important;
+
+}
+
+.login_btn{
+color: black;
+background-color: #FFC312;
+width: 100px;
+}
+
+.login_btn:hover{
+color: black;
+background-color: white;
 }

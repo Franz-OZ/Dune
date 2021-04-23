@@ -38,11 +38,21 @@ app.get('/', (req, res) => {
   })
 })
 
-app.get('/admin',(req,res)=>{
+app.get('/login',(req,res)=>{
+
+  res.render("login.ejs")
+})
+
+app.get("/admin",(req,res)=>{
   let rank=0
   Player.find().sort({score:-1}).exec(function(err,foundPlayers){
     res.render('admin.ejs',{foundPlayers:foundPlayers,rank:rank})
   })
+})
+
+app.get("/rules",(req,res)=>{
+  
+  res.render("rules.ejs")
 })
 
 app.get("/playerdash/:paramName",(req,res)=>{
@@ -57,6 +67,19 @@ app.get('/about', (req, res) => {
 
     res.render('about.ejs')
   })
+
+app.post("/login",(req,res)=>{
+  uName=req.body.username
+  password=req.body.passs
+  if (uName==="Dune" && password==="SpiceMustFlow"){
+    let rank=0
+    Player.find().sort({score:-1}).exec(function(err,foundPlayers){
+      res.render('admin.ejs',{foundPlayers:foundPlayers,rank:rank})
+    })
+  }else{
+    res.render("loginfailed.ejs")
+  }
+})
 
 app.post("/admin",(req,res)=>{
   newPlayern=req.body.players
