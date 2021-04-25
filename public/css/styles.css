@@ -64,8 +64,8 @@ th {
 }
 
 td, th {
-    padding: 1em 1.5em;
-    text-align: left;
+    padding: 1em 0.5em;
+    text-align: center;
 }
 
 tbody th {
