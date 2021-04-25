@@ -1,3 +1,4 @@
+require('dotenv').config()
 const express = require('express');
 const ejs = require("ejs");
 const bodyParser = require("body-parser");
@@ -7,7 +8,7 @@ const mongoose = require('mongoose');
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static(__dirname + '/public'));
 
-mongoose.connect('mongodb+srv://AdminD:Franz1994@cluster0.124kv.mongodb.net/DuneDB?retryWrites=true&w=majority', {useNewUrlParser: true, useUnifiedTopology: true});
+mongoose.connect('mongodb+srv://AdminD:'+process.env.DBPASS+'@cluster0.124kv.mongodb.net/DuneDB?retryWrites=true&w=majority', {useNewUrlParser: true, useUnifiedTopology: true});
 
 const gameSchema = {
   name:String,
@@ -51,7 +52,7 @@ app.get("/admin",(req,res)=>{
 })
 
 app.get("/rules",(req,res)=>{
-  
+
   res.render("rules.ejs")
 })
 
@@ -71,13 +72,14 @@ app.get('/about', (req, res) => {
 app.post("/login",(req,res)=>{
   uName=req.body.username
   password=req.body.passs
-  if (uName==="Dune" && password==="SpiceMustFlow"){
+  if (uName===process.env.UNAME && password===process.env.PW){
     let rank=0
     Player.find().sort({score:-1}).exec(function(err,foundPlayers){
       res.render('admin.ejs',{foundPlayers:foundPlayers,rank:rank})
     })
   }else{
     res.render("loginfailed.ejs")
+
   }
 })
 
